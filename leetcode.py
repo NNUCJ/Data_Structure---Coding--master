@@ -61,24 +61,24 @@
 # print(res)
 from typing import List
 import collections
-
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
-
-
-def create_Bitree(data, index):
-    Pnode = None
-    if index < len(data):
-        if data[index]  is  None:
-            return Pnode
-        Pnode = TreeNode(data[index])
-        Pnode.left = create_Bitree(data, 2*index + 1)
-        Pnode.right = create_Bitree(data, 2 * index + 2)
-
-    return Pnode
+#
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#
+#
+# def create_Bitree(data, index):
+#     Pnode = None
+#     if index < len(data):
+#         if data[index]  is  None:
+#             return Pnode
+#         Pnode = TreeNode(data[index])
+#         Pnode.left = create_Bitree(data, 2*index + 1)
+#         Pnode.right = create_Bitree(data, 2 * index + 2)
+#
+#     return Pnode
 
 # data = [5,4,8,11,None,13,4,7,2,None,None,None,1]
 # for i in range(len(data)):
@@ -86,35 +86,51 @@ def create_Bitree(data, index):
 # print(Pnode.left.val)
 
 
-class Solution:
-    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
-        if not root:  # 可能存在树为空的情况
-            return False
-        que_node = collections.deque([root])   # 记录遍历的节点
-        que_val = collections.deque([root.val])  # 记录遍历节点的value
-        while que_node:
-            now = que_node.popleft()
-            temp_val = que_val.popleft()
-            if not now.left and not now.right:   # 处于叶子节点位置判断与目标值的关系
-                if temp_val == sum:
-                    return True
-                continue
+# class Solution:
+#     def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+#         if not root:  # 可能存在树为空的情况
+#             return False
+#         que_node = collections.deque([root])   # 记录遍历的节点
+#         que_val = collections.deque([root.val])  # 记录遍历节点的value
+#         while que_node:
+#             now = que_node.popleft()
+#             temp_val = que_val.popleft()
+#             if not now.left and not now.right:   # 处于叶子节点位置判断与目标值的关系
+#                 if temp_val == sum:
+#                     return True
+#                 continue
+#
+#             if now.left:
+#                 que_node.append(now.left)
+#                 que_val.append(now.left.val + temp_val)
+#
+#             if now.right:
+#                 que_node.append(now.right)
+#                 que_val.append(now.right.val + temp_val)
+#         return False
+#
+# data = [5,4,8,11,None,13,4,7,2,None,None,None,1]
+#
+# Pnode = create_Bitree(data, 0)
+# # print(Pnode.left.left.val)
+# sum = 22
+# S = Solution()
+# out = S.hasPathSum(Pnode, sum)
+# print(out)
 
-            if now.left:
-                que_node.append(now.left)
-                que_val.append(now.left.val + temp_val)
-
-            if now.right:
-                que_node.append(now.right)
-                que_val.append(now.right.val + temp_val)
-        return False
-
-data = [5,4,8,11,None,13,4,7,2,None,None,None,1]
-
-Pnode = create_Bitree(data, 0)
-# print(Pnode.left.left.val)
-sum = 22
-S = Solution()
-out = S.hasPathSum(Pnode, sum)
-print(out)
-
+### leetcode 面试题16.11
+# class Solution:
+#     def divingBoard(self, shorter: int, longer: int, k: int) -> List[int]:
+#         res = []
+#         if k == 0:
+#             res.append(0)
+#         else:
+#             for i in range(k+1):
+#                 tmp = i*shorter + (k-i)*longer
+#                 res.append(tmp)
+#         res_ = sorted(res)
+#         return res_
+#
+# S =Solution()
+# res = S.divingBoard(1, 1, 0)
+# print(res)
