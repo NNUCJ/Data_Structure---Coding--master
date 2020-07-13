@@ -36,7 +36,7 @@
 &emsp;&emsp; 此处采用的二分法与在一维数组中采用二分法存在一些略微的区别，但是二分法基本模板还是如下：
 
             while left < right:
-                mid = (left + right)
+                mid = (left + right)//2
                 if（更新条件）:  
                    right = mid 
                 else:
