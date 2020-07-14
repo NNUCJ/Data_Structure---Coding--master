@@ -160,11 +160,11 @@ class Solution:
 
         # dp[0] = triangle[0][0]
         for i in range(1, n):
-            dp[i][0] = dp[i - 1][0] + triangle[i][0]
+            dp[i][0] = dp[i - 1][0] + triangle[i][0] # 定义最左侧状态转移方程
             for j in range(1, i):
-                dp[i][j] = min(dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j]
-            dp[i][i] = dp[i - 1][i - 1] + triangle[i][i]
-
+                dp[i][j] = min(dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j] # 一般情况
+            dp[i][i] = dp[i - 1][i - 1] + triangle[i][i]  # 定义的最右侧
+        print("dp : {}".format(dp))
         return min(dp[n - 1])
 
 
@@ -173,7 +173,7 @@ if __name__ == '__main__':
     triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
     S = Solution()
     re = S.minimumTotal(triangle)
-    print(re)
+    print("re : {}".format(re))
     # [
     #     [2],
     #    [3, 4],
