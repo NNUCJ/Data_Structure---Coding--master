@@ -151,29 +151,94 @@ import collections
 
 ### leetcode120 三角形最小路径和
 
+# class Solution:
+#     def minimumTotal(self, triangle: List[List[int]]) -> int:
+#
+#         n = len(triangle)
+#         dp = [[0] * n for _ in range(n)]
+#         dp[0][0] = triangle[0][0]
+#
+#         # dp[0] = triangle[0][0]
+#         for i in range(1, n):
+#             dp[i][0] = dp[i - 1][0] + triangle[i][0] # 定义最左侧状态转移方程
+#             for j in range(1, i):
+#                 dp[i][j] = min(dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j] # 一般情况
+#             dp[i][i] = dp[i - 1][i - 1] + triangle[i][i]  # 定义的最右侧
+#         print("dp : {}".format(dp))
+#         return min(dp[n - 1])
+
+
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+def create_Bitree(data, index):
+    Pnode = None
+    if index < len(data):
+        if data[index] is None:
+            return Pnode
+        Pnode = TreeNode(data[index])
+        Pnode.left = create_Bitree(data, 2 * index + 1)
+        Pnode.right = create_Bitree(data, 2 * index + 2)
+
+    return Pnode
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def minimumTotal(self, triangle: List[List[int]]) -> int:
+    def generateTrees(self, n: int):
+        def generateTrees(start, end):
+            if start > end:
+                return [None,]
 
-        n = len(triangle)
-        dp = [[0] * n for _ in range(n)]
-        dp[0][0] = triangle[0][0]
+            Tree_list = []
 
-        # dp[0] = triangle[0][0]
-        for i in range(1, n):
-            dp[i][0] = dp[i - 1][0] + triangle[i][0] # 定义最左侧状态转移方程
-            for j in range(1, i):
-                dp[i][j] = min(dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j] # 一般情况
-            dp[i][i] = dp[i - 1][i - 1] + triangle[i][i]  # 定义的最右侧
-        print("dp : {}".format(dp))
-        return min(dp[n - 1])
+            for i in range(start, end+1):  # 遍历确定根节点
+
+                left_trees = generateTrees(start, i-1)
+
+                right_tree = generateTrees(i+1, end)
+
+                for l in left_trees:
+                    for r in right_tree:
+                        roottree = TreeNode(i)
+                        roottree.left = l
+                        roottree.right = r
+                        Tree_list.append(roottree)
+            return Tree_list
+        return generateTrees(1, n) if n else []
+
+
+## 前序遍历
+def preordef(root):
+    tree_list = []
+    if root == None:
+        return
+    print(root.val, end=' ')
+    preordef(root.left)
+    preordef(root.right)
 
 
 
 if __name__ == '__main__':
-    triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+    # triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
     S = Solution()
-    re = S.minimumTotal(triangle)
-    print("re : {}".format(re))
+    re = S.generateTrees(3)
+    # tree_listpreordef(re[0])
+    for i in re:
+        tree_list = preordef(i)
+        # print(tree_list)
+        # for tree in re:
+    #     print(tree.val)
+    # print(re[0].left.val)
+
+
     # [
     #     [2],
     #    [3, 4],

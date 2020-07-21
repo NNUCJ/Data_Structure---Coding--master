@@ -22,10 +22,10 @@
 &emsp;&emsp;代码如下：
 
     class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+        def __init__(self, x):
+            self.val = x
+            self.left = None
+            self.right = None
 
 
     def create_Bitree(data, index):
@@ -36,9 +36,9 @@
             Pnode = TreeNode(data[index])
             Pnode.left = create_Bitree(data, 2*index + 1)
             Pnode.right = create_Bitree(data, 2 * index + 2)
-    
-        return Pnode
-    
+
+         return Pnode
+
     data = [5,4,8,11,None,13,4,7,2,None,None,None,1]
     for i in range(len(data)):
         Pnode = create_Bitree(data, 0)
