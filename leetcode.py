@@ -191,48 +191,51 @@ def create_Bitree(data, index):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def generateTrees(self, n: int):
-        def generateTrees(start, end):
-            if start > end:
-                return [None,]
+# class Solution:
+#     def generateTrees(self, n: int):
+#         def generateTrees(start, end):
+#             if start > end:
+#                 return [None,]
 
-            Tree_list = []
+#             Tree_list = []
 
-            for i in range(start, end+1):  # 遍历确定根节点
+#             for i in range(start, end+1):  # 遍历确定根节点
 
-                left_trees = generateTrees(start, i-1)
+#                 left_trees = generateTrees(start, i-1)
 
-                right_tree = generateTrees(i+1, end)
+#                 right_tree = generateTrees(i+1, end)
 
-                for l in left_trees:
-                    for r in right_tree:
-                        roottree = TreeNode(i)
-                        roottree.left = l
-                        roottree.right = r
-                        Tree_list.append(roottree)
-            return Tree_list
-        return generateTrees(1, n) if n else []
+#                 for l in left_trees:
+#                     for r in right_tree:
+#                         roottree = TreeNode(i)
+#                         roottree.left = l
+#                         roottree.right = r
+#                         Tree_list.append(roottree)
+#             return Tree_list
+#         return generateTrees(1, n) if n else []
 
 
 ## 前序遍历
 def preordef(root):
-    tree_list = []
     if root == None:
         return
-    print(root.val, end=' ')
+    # print(root.val, end=' ')
+
     preordef(root.left)
     preordef(root.right)
 
 
 
 if __name__ == '__main__':
+    data = [3,4,5,1,3,None,1]
+    pnode = create_Bitree(data, 0)
+    preordef(pnode)
     # triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
-    S = Solution()
-    re = S.generateTrees(3)
+    # S = Solution()
+    # re = S.generateTrees(3)
     # tree_listpreordef(re[0])
-    for i in re:
-        tree_list = preordef(i)
+    # for i in re:
+    #     tree_list = preordef(i)
         # print(tree_list)
         # for tree in re:
     #     print(tree.val)

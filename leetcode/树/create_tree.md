@@ -37,7 +37,7 @@
             Pnode.left = create_Bitree(data, 2*index + 1)
             Pnode.right = create_Bitree(data, 2 * index + 2)
 
-         return Pnode
+        return Pnode
 
     data = [5,4,8,11,None,13,4,7,2,None,None,None,1]
     for i in range(len(data)):
